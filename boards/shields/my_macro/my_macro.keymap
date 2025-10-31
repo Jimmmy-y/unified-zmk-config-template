@@ -1,0 +1,42 @@
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+
+/ {
+    macros {
+        // 매크로 간격 변수 설정
+        jjk: jjk_macro {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_tap &kp J>
+                , <&macro_wait_time 100>  // 100ms 대기
+                , <&macro_tap &kp J>
+                , <&macro_wait_time 100>
+                , <&macro_tap &kp K>
+                ;
+        };
+
+        llk: llk_macro {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_tap &kp L>
+                , <&macro_wait_time 100>
+                , <&macro_tap &kp L>
+                , <&macro_wait_time 100>
+                , <&macro_tap &kp K>
+                ;
+        };
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+
+        default_layer {
+            bindings = 
+                &jjk    // IO5번 핀
+                &llk    // IO24번 핀
+            >;
+        };
+    };
+};
