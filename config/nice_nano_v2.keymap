@@ -10,6 +10,8 @@
 
     kscan0: kscan {
         compatible = "zmk,kscan-gpio-direct";
+        label = "KSCAN";
+        
         input-gpios
             = <&gpio0 5 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
             , <&gpio0 24 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
@@ -19,6 +21,7 @@
     macros {
         jjk: jjk_macro {
             compatible = "zmk,behavior-macro";
+            label = "JJK_MACRO";
             #binding-cells = <0>;
             bindings
                 = <&macro_tap &kp J>
@@ -31,6 +34,7 @@
 
         llk: llk_macro {
             compatible = "zmk,behavior-macro";
+            label = "LLK_MACRO";
             #binding-cells = <0>;
             bindings
                 = <&macro_tap &kp L>
@@ -44,12 +48,11 @@
 
     keymap {
         compatible = "zmk,keymap";
-        
+        label = "KEYMAP";
+
         default_layer {
-            bindings = 
-                &jjk
-                &llk
-            >;
+            label = "Default";
+            bindings = <&jjk &llk>;
         };
     };
 };
