@@ -62,22 +62,22 @@
     };
 
     behaviors {
-        bt_clr_tap: hold_tap_bt_clear {
+        bt_clr_tap: bt_clr_hold_tap {
             compatible = "zmk,behavior-hold-tap";
             label = "BT_CLEAR_TAP";
             #binding-cells = <2>;
             tapping-term-ms = <2000>;
             flavor = "tap-preferred";
-            bindings = <&bt_clear>, <&jjk>;
+            bindings = <&bt_clear &jjk>;
         };
 
-        bt_pair_tap: hold_tap_bt_pair {
+        bt_pair_tap: bt_pair_hold_tap {
             compatible = "zmk,behavior-hold-tap";
             label = "BT_PAIR_TAP";
             #binding-cells = <2>;
             tapping-term-ms = <2000>;
             flavor = "tap-preferred";
-            bindings = <&bt_pair>, <&llk>;
+            bindings = <&bt_pair &llk>;
         };
     };
 
