@@ -1,0 +1,52 @@
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+
+/ {
+    // 2개 키 직접 연결 정의
+    kscan0: kscan {
+        compatible = "zmk,kscan-gpio-direct";
+        input-gpios
+            = <&gpio0 5 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>   // IO5 핀
+            , <&gpio0 24 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  // IO24 핀
+            ;
+    };
+
+    // 매크로 정의
+    macros {
+        jjk: jjk_macro {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_tap &kp J>
+                , <&macro_wait_time 100>
+                , <&macro_tap &kp J>
+                , <&macro_wait_time 100>
+                , <&macro_tap &kp K>
+                ;
+        };
+
+        llk: llk_macro {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_tap &kp L>
+                , <&macro_wait_time 100>
+                , <&macro_tap &kp L>
+                , <&macro_wait_time 100>
+                , <&macro_tap &kp K>
+                ;
+        };
+    };
+
+    // 키맵 정의
+    keymap {
+        compatible = "zmk,keymap";
+        
+        default_layer {
+            bindings = 
+                &jjk    // 첫 번째 키 (IO5)
+                &llk    // 두 번째 키 (IO24)
+            >;
+        };
+    };
+};
