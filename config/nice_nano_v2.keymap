@@ -45,25 +45,39 @@
                 , <&macro_tap &kp K>
                 ;
         };
+
+        bt_clear: bt_clear_macro {
+            compatible = "zmk,behavior-macro";
+            label = "BT_CLEAR";
+            #binding-cells = <0>;
+            bindings = <&bt BT_CLR_ALL>;
+        };
+
+        bt_pair: bt_pair_macro {
+            compatible = "zmk,behavior-macro";
+            label = "BT_PAIR";
+            #binding-cells = <0>;
+            bindings = <&bt BT_SEL 0>;
+        };
     };
 
     behaviors {
-        bt_clr: hold_tap_bt_clear {
+        bt_clr_tap: hold_tap_bt_clear {
             compatible = "zmk,behavior-hold-tap";
-            label = "BT_CLEAR";
+            label = "BT_CLEAR_TAP";
             #binding-cells = <2>;
             tapping-term-ms = <2000>;
             flavor = "tap-preferred";
-            bindings = <&bt>, <&jjk>;
+            bindings = <&bt_clear>, <&jjk>;
         };
 
-        bt_pair: hold_tap_bt_pair {
+        bt_pair_tap: hold_tap_bt_pair {
             compatible = "zmk,behavior-hold-tap";
-            label = "BT_PAIR";
+            label = "BT_PAIR_TAP";
             #binding-cells = <2>;
             tapping-term-ms = <2000>;
             flavor = "tap-preferred";
-            bindings = <&bt>, <&llk>;
+            bindings = <&bt_pair>, <&llk>;
         };
     };
 
@@ -73,3 +87,10 @@
 
         default_layer {
             label = "Default";
+            bindings = 
+                &bt_clr_tap 0 0
+                &bt_pair_tap 0 0
+            >;
+        };
+    };
+};
