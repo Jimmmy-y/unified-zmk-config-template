@@ -1,6 +1,8 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 
+#define MACRO_DELAY 100  // ← 이 값만 변경하면 됨!
+
 / {
     // 2개 키 직접 연결 정의
     kscan0: kscan {
